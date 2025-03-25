@@ -12,6 +12,7 @@ import { BlogListPage } from './pages/blogList';
 import Profile from './pages/profile';
 import { UserProvider } from './providers/userProvider';
 import BlogDetail from './pages/blogDetail';
+import Register from './pages/register';
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +29,7 @@ function App() {
               </Profilayout>
             </UserProvider>
           } />
-
+          <Route path="/register" element={<Register />} />
 
 
           <Route path="/app" element={<UserProvider><Profilayout/></UserProvider>} >

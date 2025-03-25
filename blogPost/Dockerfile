@@ -2,17 +2,18 @@
 FROM node:18-alpine
 
 # Set the working directory inside the container
-WORKDIR /front
+WORKDIR /blogPost
+
 
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
-
+COPY . .
 # Install dependencies
 RUN npm install 
 RUN npm run build 
 
 # Copy the rest of the application files
-COPY . .
+
 RUN npm install -g http-server
 # Build the NestJS application
 # RUN npm run dev

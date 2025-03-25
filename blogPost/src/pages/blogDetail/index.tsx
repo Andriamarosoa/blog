@@ -9,7 +9,8 @@ import UserPicture from "../../components/userPicture";
 import { useUser } from "../../providers/userProvider";
 import { Button } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-const API_URL = "http://localhost:5000";
+import { config } from "../../config";
+const API_URL = config.API_URL;
 
 const BlogDetail = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,5 +1,5 @@
-const API_URL = "http://localhost:5000"; // Remplace avec ton API
-
+import {config} from "../config"
+const API_URL = config.API_URL; // Remplace avec ton API
 export type User = {
   id: number;
   name: string;

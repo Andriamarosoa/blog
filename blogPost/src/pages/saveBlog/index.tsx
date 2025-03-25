@@ -23,7 +23,8 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import { ActualFileObject } from "filepond";
 import blogService, { BlogPost } from '../../services/blogService'
 import { useParams } from "react-router-dom";
-const API_URL = "http://localhost:5000";
+import { config } from "../../config";
+const API_URL = config.API_URL;
 registerPlugin(FilePondPluginImagePreview)
 
 

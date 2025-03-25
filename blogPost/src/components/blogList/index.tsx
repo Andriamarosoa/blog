@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
-const API_URL = "http://localhost:5000";
+import { config } from "../../config";
+const API_URL = config.API_URL;
 type BlogListProp = {
     isGrid: boolean,
     blogs: any[],
