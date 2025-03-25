@@ -47,7 +47,7 @@ export const blogService = {
       formData.append("attachments", blog.attachments[i]); // Append multiple files
     }
 
-    const response = await fetch(`${API_URL}/blog`, {
+    const response:any = await fetch(`${API_URL}/blog`, {
       method: "POST",
       body: formData, // Send as multipart/form-data
     });

@@ -22,7 +22,7 @@ import "./saveBlog.css"
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import { ActualFileObject } from "filepond";
 import blogService, { BlogPost } from '../../services/blogService'
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { config } from "../../config";
 const API_URL = config.API_URL;
 registerPlugin(FilePondPluginImagePreview)
@@ -42,6 +42,7 @@ const SaveBlog = () => {
     getValues
   } = useForm<BlogPost>({ defaultValues: { content: "",userId:1 } });
 
+  const navigate = useNavigate();
   const content = watch("content");
   const [selectedFiles, setSelectedFiles] = useState<ActualFileObject[]>([]);
   const onSubmit = (data: BlogPost) => {
@@ -49,7 +50,9 @@ const SaveBlog = () => {
     data.attachments=attachments
     console.log(data);
     
-    blogService.saveBlog(data).then()
+    blogService.saveBlog(data).then((b:any)=>{
+      navigate(`/app/my-post`)
+    })
   };
   const handleFileChange = (file:any) => {
     const arrfile:any=Array.from(file).map((f:any)=>f.file)

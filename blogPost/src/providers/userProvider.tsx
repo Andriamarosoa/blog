@@ -6,6 +6,7 @@ interface UserContextType {
   user: any | null;
   token: string | null; 
   logout: () => void;
+  login: (tokenObject:any) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -37,7 +38,7 @@ export const UserProvider = ({ children ,strict=true}: { children: ReactNode ,st
     }
   },[])
   return (
-    <UserContext.Provider value={{ user, token, logout }}>
+    <UserContext.Provider value={{ user, token, logout,login }}>
         {(!token && strict) && <Login login={login} logout={logout} />  || children}
     </UserContext.Provider>
   );

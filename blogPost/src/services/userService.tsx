@@ -34,4 +34,16 @@ export const userService = {
     if (!response.ok) throw new Error("login failed");
     return response.json();
   },
+  async register(user:any): Promise<Token>{
+    const response = await fetch(`${API_URL}/user`,{
+      body:JSON.stringify(user),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }as any);
+    if (!response.ok) throw new Error("login failed");
+    await response.json();
+    return this.login(user.email,user.password) 
+  }
 };

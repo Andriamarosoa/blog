@@ -29,7 +29,7 @@ function App() {
               </Profilayout>
             </UserProvider>
           } />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<UserProvider strict={false}><Register /></UserProvider>} />
 
 
           <Route path="/app" element={<UserProvider><Profilayout/></UserProvider>} >

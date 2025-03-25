@@ -14,10 +14,11 @@ export class UserService {
         return await userRepository.findOne({ where: { id } });
     }
 
-    static async createUser(data: { name: string, email: string }) {
+    static async createUser(data: { name: string, email: string, password: string }) {
         const user = new User();
         user.name = data.name;
         user.email = data.email;
+        user.password=data.password;
         return await userRepository.save(user);
     }
 

@@ -1,97 +1,98 @@
 // src/components/Register.js
-import React, { useState } from 'react';
-
+import React from 'react';
+import { Form, Input, Button, Checkbox, message } from 'antd';
+import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+import './register.css'
+import { userService } from '../../services/userService';
+import { useUser } from '../../providers/userProvider';
+import { Link, useNavigate } from 'react-router-dom';
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
-
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e:any) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const validate = () => {
-    const newErrors = { name: '', email: '', password: '' };
-
-    if (!formData.name) {
-      newErrors.name = 'Name is required';
-    }
-
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-    }
-
-    setErrors(newErrors);
-
-    return Object.values(newErrors).every((error) => !error);
-  };
-
-  const handleSubmit = (e:any) => {
-    e.preventDefault();
-
-    if (validate()) {
-      console.log('Form submitted:', formData);
-      
-    }
+  const {login}=useUser();
+  const navigate = useNavigate();
+  const onFinish = (values:any) => {
+    console.log('Received values:', values);
+    message.success('Registration successful!');
+    userService.register(values).then((token)=>{
+      login(token)
+      navigate("/app/profile")
+    });
   };
 
   return (
-    <div className="register-container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
+    <div className="flex items-center justify-center register-container">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
+        <Form
+          name="register"
+          onFinish={onFinish}
+          initialValues={{
+            remember: true,
+          }}
+        >
+          <Form.Item
             name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <span className="error">{errors.name}</span>}
-        </div>
+            rules={[
+              { required: true, message: 'Please input your name!' },
+            ]}
+          >
+            <Input
+              prefix={<UserOutlined />}
+              placeholder="Name"
+              className="shadow-md"
+            />
+          </Form.Item>
 
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
+          <Form.Item
             name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <span className="error">{errors.email}</span>}
-        </div>
+            rules={[
+              { required: true, message: 'Please input your email!' },
+              { type: 'email', message: 'Please input a valid email!' },
+            ]}
+          >
+            <Input
+              prefix={<MailOutlined />}
+              placeholder="Email"
+              className="shadow-md"
+            />
+          </Form.Item>
 
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
+          <Form.Item
             name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          {errors.password && <span className="error">{errors.password}</span>}
-        </div>
+            rules={[
+              { required: true, message: 'Please input your password!' },
+              { min: 6, message: 'Password must be at least 6 characters long' },
+            ]}
+            hasFeedback
+          >
+            <Input.Password
+              prefix={<LockOutlined />}
+              placeholder="Password"
+              className="shadow-md"
+            />
+          </Form.Item>
 
-        <button type="submit">Register</button>
-      </form>
+         
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              block
+              className="bg-blue-900 hover:bg-blue-700 focus:ring-2 focus:ring-blue-300"
+            >
+              Register
+            </Button>
+            <div>
+            <span className="">
+              <span>have an account ? </span>
+              <Link to="/app/profile" className="underline text-blue-900">
+                Login
+              </Link>
+            </span>
+          </div>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

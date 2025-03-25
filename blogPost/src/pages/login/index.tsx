@@ -4,6 +4,7 @@ import { registerPlugin } from 'react-filepond'
  
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import { userService } from "../../services/userService";
+import { Link } from "react-router-dom";
 registerPlugin(FilePondPluginImagePreview)
 
 
@@ -60,6 +61,14 @@ const Login = ({login,logout}:loginProps) => {
           >
             Login
           </button>
+          <div>
+            <span className="">
+              <span>Dont have an account? </span>
+              <Link to="/register" className="underline text-blue-900">
+                Register
+              </Link>
+            </span>
+          </div>
         </form>
       </div>
     </div>
