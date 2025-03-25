@@ -1,0 +1,25 @@
+.popularBLogTitle {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.number{
+    width: 2rem; /* Equivalent to w-10 */
+    height: 2rem; /* Equivalent to h-10 */
+    display: flex; /* Equivalent to flex */
+    align-items: center; /* Equivalent to items-center */
+    justify-content: center; /* Equivalent to justify-center */
+    border-radius: 9999px; /* Equivalent to rounded-full */
+    background-color: #1e3a8a; /* Equivalent to bg-blue-900 */
+    color: white; /* Equivalent to text-white */
+    font-size:10px; /* Equivalent to text-lg */
+    font-weight: bold; /* Equivalent to font-bold */
+    flex: 0 0 auto;
+}

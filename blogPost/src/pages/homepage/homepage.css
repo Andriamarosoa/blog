@@ -1,0 +1,30 @@
+
+.picture{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    flex: 0 0 auto;
+}
+.gridPage .picture{
+    width: 100%;
+}
+.blogTitle{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.blogContent{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-transform: capitalize;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.content{
+    min-height:calc( 100vh - 320.5px  )
+}

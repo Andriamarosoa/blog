@@ -1,0 +1,29 @@
+.popularBLogTitle {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.profilPicture{
+    width: 2.5rem; /* Equivalent to w-10 */
+    height: 2.5rem; /* Equivalent to h-10 */
+    display: flex; /* Equivalent to flex */
+    align-items: center; /* Equivalent to items-center */
+    justify-content: center; /* Equivalent to justify-center */
+    border-radius: 9999px; /* Equivalent to rounded-full */
+    background-color: #1e3a8a; /* Equivalent to bg-blue-900 */
+    color: white; /* Equivalent to text-white */
+    font-size: 1.125rem; /* Equivalent to text-lg */
+    font-weight: bold; /* Equivalent to font-bold */
+    flex: 0 0 auto;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://media.istockphoto.com/id/1682296067/photo/happy-studio-portrait-or-professional-man-real-estate-agent-or-asian-businessman-smile-for.jpg?s=1024x1024&w=is&k=20&c=y4FFqpMLolCvEqoxlr4oypQqhAL1ta0ojXUnOofQXHk=);
+}
