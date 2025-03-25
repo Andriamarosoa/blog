@@ -1,0 +1,42 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: blog_db
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  back:
+    build: ./back
+    container_name: backend_container
+    restart: unless-stopped
+    depends_on:
+      - mysql  # Ensure MySQL starts before backend
+    environment:
+      DB_HOST: host.docker.internal
+    ports:
+      - "8000:5000"
+    volumes:
+      - ./back:/uploads
+    # command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+  front:
+    build: ./blogPost
+    container_name: front_container
+    restart: unless-stopped
+    depends_on:
+      - mysql  # Ensure MySQL starts before backend
+      - back  # Ensure MySQL starts before backend
+    environment:
+      DB_HOST: host.docker.internal
+    ports:
+      - "5000:8080"
+  
+    # command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+volumes:
+  mysql_data:
