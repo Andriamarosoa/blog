@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "start": "cd ./build && node /index.js",
-    "dev": "npx ts-node src/index.ts"
+    "dev": "npx ts-node src/index.ts",
+    "migration:run": "cd ./build && npx typeorm schema:sync -d data-source.js"
   },
   "keywords": [],
   "author": "",

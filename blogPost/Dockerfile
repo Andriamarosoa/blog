@@ -19,7 +19,8 @@ RUN npm install -g http-server
 # RUN npm run dev
 
 # Expose the port the app runs on
-EXPOSE 8080
+EXPOSE 3000
 
 # Define the command to run the application
-CMD ["http-server", "build", "-p", "8080", "--host", "0.0.0.0"]
+# CMD ["http-server", "build", "-p", "3000", "--host", "0.0.0.0"]
+CMD ["node", "index"]

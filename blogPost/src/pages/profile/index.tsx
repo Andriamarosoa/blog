@@ -93,14 +93,14 @@ const Profil = () => {
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
             </div>
 
-            <div>
+            {/* <div>
               <label className="block font-semibold">Password</label>
               <input type="password"
                 {...register("password", { required: "Password is required" })}
                 className="w-full p-2 border "
               />
               {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-            </div>
+            </div> */}
             
             {/* File Upload */}
             <div>

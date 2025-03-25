@@ -13,10 +13,16 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql-init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - backend
+
+  
+
   back:
     build: ./back
     container_name: backend_container
     restart: unless-stopped
+    working_dir: /app
     depends_on:
       - mysql  # Ensure MySQL starts before backend
     environment:
@@ -24,7 +30,7 @@ services:
     ports:
       - "8000:5000"
     volumes:
-      - ./back:/uploads
+      - ./back/uploads:/app/uploads
     # command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
   front:
     build: ./blogPost
@@ -36,8 +42,22 @@ services:
     environment:
       DB_HOST: host.docker.internal
     ports:
-      - "5000:8080"
-  
+      - "5000:3000"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8080:80"
+    networks:
+      - backend
+    depends_on:
+      - mysql  
     # command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 volumes:
   mysql_data:
+networks:
+  backend:
+    driver: bridge

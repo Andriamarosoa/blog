@@ -22,3 +22,4 @@ export const AppDataSource = new DataSource({
   charset: 'utf8mb4',
   //logging: true,
 });
+export default AppDataSource;

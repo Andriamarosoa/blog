@@ -22,7 +22,7 @@ const Login = ({login,logout}:loginProps) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>({ defaultValues: { } });
+  } = useForm<User>({ defaultValues: { email:'tinah.andriamarosoa@gmail.com',password:'Qwerty12345'} });
   
   const onSubmit = (data: User) => {
     userService.login(data.email,data.password).then(login).catch(logout)

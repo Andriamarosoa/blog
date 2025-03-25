@@ -24,6 +24,7 @@ import { ActualFileObject } from "filepond";
 import blogService, { BlogPost } from '../../services/blogService'
 import { useNavigate, useParams } from "react-router-dom";
 import { config } from "../../config";
+import { useUser } from "../../providers/userProvider";
 const API_URL = config.API_URL;
 registerPlugin(FilePondPluginImagePreview)
 
@@ -42,6 +43,7 @@ const SaveBlog = () => {
     getValues
   } = useForm<BlogPost>({ defaultValues: { content: "",userId:1 } });
 
+  const {user}=useUser()
   const navigate = useNavigate();
   const content = watch("content");
   const [selectedFiles, setSelectedFiles] = useState<ActualFileObject[]>([]);
@@ -91,7 +93,13 @@ const SaveBlog = () => {
     }
   },[id])
 
+  useEffect(()=>{
+   if(user?.id){
+    setValue("userId",user.id)
+   }
+  },[user])
 
+  
 
 
   useEffect(()=>{

@@ -9,9 +9,9 @@ export class PostController {
       const filter=JSON.parse(req.query?.filter as string||'{}');
       const blogs = await BlogService.getAll(filter);
       res.status(200).json(blogs);
-    } catch (error) {
-        console.log("get not ok");
-        res.status(500).json({ error: "Erreur lors de la récupération des blogs" });
+    } catch (error:any) {
+        console.log(error.message);
+        res.status(500).json({ error: error.message|| "Erreur lors de la récupération des blogs" });
     }
   }
 

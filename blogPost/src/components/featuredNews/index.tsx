@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 type News = {
   image?: any,
   title?: any,
@@ -6,8 +7,12 @@ type News = {
   time?: any
 } & { [key: string]: any }
 const FeaturedNews = () => {
+  const navigate=useNavigate()
+  const handleClick=()=>{
+    navigate("/blog")
+  }
   return (
-    <div className="max-w-screen-xl mx-auto lg:p-6 grid grid-cols-12 gap-6">
+    <div className="max-w-screen-xl mx-auto lg:p-6 grid grid-cols-12 gap-6" onClick={handleClick}>
       {/* Left Side Articles */}
       <div className="col-span-3  flex-col  gap-y-4 hidden lg:flex">
         <ArticleCard

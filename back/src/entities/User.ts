@@ -13,7 +13,7 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ unique: true })
+  @Column()
   get password(){
     return this.#password
   }

@@ -6,14 +6,15 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
+COPY .env ./
 
 # Install dependencies
 RUN npm install 
-RUN npm install react-scripts
-
+RUN npm install -g typescript
 # Copy the rest of the application files
 COPY . .
 
+RUN npm run build
 # Build the NestJS application
 # RUN npm run dev
 
